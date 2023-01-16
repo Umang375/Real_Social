@@ -18,7 +18,7 @@ import { Navigate } from 'react-router-dom';
 
 function App() {
 
-  const currentUser = false;
+  const currentUser = true;
 
   const Layout = () =>{
     return(
@@ -60,7 +60,6 @@ function App() {
     {
       path: "/register",
       element: <Register />
-
     }
   ]);
 
