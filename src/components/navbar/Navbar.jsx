@@ -1,5 +1,6 @@
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
+import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
 import GridViewOutlinedIcon from '@mui/icons-material/GridViewOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
@@ -7,9 +8,13 @@ import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import { Link } from 'react-router-dom';
 import './Navbar.scss'
+import { DarkModeContext } from '../../context/DarkModeContext';
+import { useContext } from 'react';
 
 
 const Navbar = () => {
+
+  const {toggleDarkMode, darkMode} = useContext(DarkModeContext);
   return (
     <div className='navBar'>
         <div className="left">
@@ -19,11 +24,11 @@ const Navbar = () => {
           </span>
           </Link>
           <HomeOutlinedIcon/>
-          <DarkModeOutlinedIcon/>
+          {darkMode ? <DarkModeOutlinedIcon onClick = {toggleDarkMode}/> : <LightModeOutlinedIcon onClick = {toggleDarkMode}/> }
           <GridViewOutlinedIcon/>
           <div className="search">
-            <input type="text" placeholder='search' />
             <SearchOutlinedIcon/>
+            <input type="text" placeholder='Search' />
           </div>
         </div>
         <div className="right">
