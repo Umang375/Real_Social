@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import "./post.scss";
 import { FavoriteOutlined, FavoriteBorderOutlined } from "@mui/icons-material";
 import { TextsmsOutlined } from "@mui/icons-material";
 import { ShareOutlined } from "@mui/icons-material";
 import { MoreHoriz } from "@mui/icons-material";
 import { Link } from "react-router-dom";
+import Comments from "../comments/Comments";
 
 function Post({ post }) {
+  const [commentsBox, setCommentsBox] = useState(false);
   //temp
   const liked = false;
   return (
@@ -35,13 +37,14 @@ function Post({ post }) {
           <div className="item">
             {liked ? <FavoriteOutlined /> : <FavoriteBorderOutlined />} 12 likes
           </div>
-          <div className="item">
+          <div className="item" onClick={() => setCommentsBox(!commentsBox)}>
             <TextsmsOutlined /> 2 comments
           </div>
           <div className="item">
             <ShareOutlined /> 1 share
           </div>
         </div>
+        {commentsBox && <Comments />}
       </div>
     </div>
   );
