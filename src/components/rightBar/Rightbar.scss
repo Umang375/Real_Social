@@ -11,6 +11,15 @@
       display: none;
     }
     background-color: themed("bgSoft");
+
+    @include mobile{
+      display: none;
+    }
+
+    @include tablet{
+      display: none;
+    }
+
     .container {
       padding: 20px;
       .item {
