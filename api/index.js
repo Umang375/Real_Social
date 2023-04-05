@@ -11,12 +11,12 @@ const app = express();
 const mysql = require('mysql');
 const PORT = 5000;
 
-mysql.createConnection({
-    host: 'localhost',
-    name: 'root',
-    password: 'Ujain7315@',
-    database: 'test'
-})
+// mysql.createConnection({
+//     host: 'localhost',
+//     name: 'root',
+//     password: 'Ujain7315@',
+//     database: 'test'
+// })
 app.use(express.json());
 
 app.use('/api/auth', authRoute);
