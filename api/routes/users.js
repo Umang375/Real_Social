@@ -1,11 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const mysql = require('mysql');
-const app = express();
+const {getUser : fetchUser} = require("../connecters/user");
 
-router.get('/test',(req,res) =>{
-    res.send("Hello World");
-})
+router.get('/find/:userId', fetchUser)
 
 module.exports = router;
 
