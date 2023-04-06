@@ -1,9 +1,11 @@
+const { ErrorSharp } = require('@mui/icons-material');
 const db = require('../connect');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 const register = (req, res) =>{
     //check if the user already exists
-    const q = 'SELECT FROM users WHERE username = ?';
+    const q = 'SELECT * FROM users WHERE username = ?';
     db.query(q,[req.body.username],(err, data)=>{
         if(err) return res.status(500).send(err);
         if(data.length) return res.status(409).json({message: "User already exists"});
@@ -21,11 +23,31 @@ const register = (req, res) =>{
 }
 
 const login = (req, res) =>{
-    res.send("login method");
+    const q = 'SELECT * FROM users WHERE username = ?';
+    db.query(q,[req.body.username], (err, data)=>{
+        if(err) return res.status(500).json(err);
+        if(!data.length) return res.status(404).json({message: "User not found"});
+        //check if the password is correct
+        const validPass = bcrypt.compareSync(req.body.password, data[0].password);
+        if(!validPass) return res.status(401).json({message: "Invalid password"});
+
+        const token = jwt.sign({id:data[0].id}, "keyyyyyyyyyyyyyy", {expiresIn: "1h"});
+
+        const {password, ...user} = data[0];
+        //direct json the user will also send the hashed password so here i will try to sep th password and send the rest of the data
+
+        res.cookie("access_token", token, {httpOnly: true, sameSite: true})
+        .status(200)
+        .json({message: "Login successful", token: token, user: user});
+        //might break test necessary
+    })
 } 
 
 const logout = (req, res) =>{
-    res.send("logout method");
+    res.clearCookie("access_token", {
+        secure: true,
+        sameSite: "none"
+    }).status(200).json({message: "Logout successful"});
 }
 
 module.exports ={

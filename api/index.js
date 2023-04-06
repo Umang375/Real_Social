@@ -4,20 +4,16 @@ const authRoute = require('./routes/auth');
 const postRoute = require('./routes/posts');
 const commentRoute = require('./routes/comments');
 const likeRoute = require('./routes/likes');
-
+const cors = require('cors');
 const express = require('express');
-// const router = express.Router();
+const cookieParser = require('cookie-parser');
+
 const app = express();
-const mysql = require('mysql');
 const PORT = 5000;
 
-// mysql.createConnection({
-//     host: 'localhost',
-//     name: 'root',
-//     password: 'Ujain7315@',
-//     database: 'test'
-// })
 app.use(express.json());
+app.use(cors());
+app.use(cookieParser());
 
 app.use('/api/auth', authRoute);
 app.use('/api/users', userRoute);
