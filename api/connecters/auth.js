@@ -1,4 +1,3 @@
-const { ErrorSharp } = require('@mui/icons-material');
 const db = require('../connect');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
@@ -38,7 +37,7 @@ const login = (req, res) =>{
 
         res.cookie("access_token", token, {httpOnly: true, sameSite: true})
         .status(200)
-        .json({message: "Login successful", token: token, user: user});
+        .json(user);
         //might break test necessary
     })
 } 
