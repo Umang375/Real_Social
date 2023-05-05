@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const {} = require("../connecters/user");
+const {getPosts} = require("../connecters/post");
 
-router.get('', )
+router.get('/', getPosts )
 
 module.exports = router;

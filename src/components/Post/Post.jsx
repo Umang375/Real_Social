@@ -7,7 +7,7 @@ import { MoreHoriz } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import Comments from "../comments/Comments";
 
-function Post({ post }) {
+const Post = ({ post }) => {
   const [commentsBox, setCommentsBox] = useState(false);
   //temp
   const liked = false;
@@ -16,7 +16,7 @@ function Post({ post }) {
       <div className="container">
         <div className="user">
           <div className="userInfo">
-            <img src={post.profilePic} alt="" />
+            <img src={post.ProfilePic} alt="" />
             <div className="details">
               <Link
                 to={`/profile/${post.userId}`}
