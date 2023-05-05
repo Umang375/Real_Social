@@ -15,7 +15,7 @@ const getPosts = (req, res) => {
         db.query(q, [userInfo.id, userInfo.id], (err, result)=>{
             if(err) return res.status(500).json({error: err.message, sql: err.sql});
             return res.status(200).json(result);
-    })
+        })
 
     })  
 }
