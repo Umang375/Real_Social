@@ -25,8 +25,7 @@ const Share = () => {
 
   const queryClient = useQueryClient();
 
-  const mutation = useMutation(
-    (newPost) => {
+  const mutation = useMutation((newPost) => {
       return makeRequest.post("/posts", newPost);
     },
     {
