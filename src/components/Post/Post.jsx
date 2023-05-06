@@ -6,6 +6,7 @@ import { ShareOutlined } from "@mui/icons-material";
 import { MoreHoriz } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import Comments from "../comments/Comments";
+import moment from "moment";
 
 const Post = ({ post }) => {
   const [commentsBox, setCommentsBox] = useState(false);
@@ -24,14 +25,14 @@ const Post = ({ post }) => {
               >
                 <span className="post_name">{post.name}</span>
               </Link>
-              <span className="post_date"> 1 min ago</span>
+              <span className="post_date">{moment(post.dateTime).fromNow()}</span>
             </div>
           </div>
           <MoreHoriz />
         </div>
         <div className="content">
           <p>{post.desc}</p>
-          <img src={post.img} alt="" />
+          <img src={"./uploads/"+post.img} alt="" />
         </div>
         <div className="info">
           <div className="item">
