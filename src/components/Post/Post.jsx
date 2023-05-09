@@ -45,7 +45,7 @@ const Post = ({ post }) => {
             <ShareOutlined /> 1 share
           </div>
         </div>
-        {commentsBox && <Comments />}
+        {commentsBox && <Comments post_id = {post.id} />}
       </div>
     </div>
   );
