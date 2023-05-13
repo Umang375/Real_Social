@@ -1,7 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const {} = require("../connecters/user");
+const {getLikes, addLike, deleteLike} = require("../connecters/like");
 
-router.get('', )
+router.get('/', getLikes )
+router.post('/', addLike )
+router.delete('/', deleteLike )
 
 module.exports = router;

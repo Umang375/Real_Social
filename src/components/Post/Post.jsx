@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./post.scss";
 import { FavoriteOutlined, FavoriteBorderOutlined } from "@mui/icons-material";
 import { TextsmsOutlined } from "@mui/icons-material";
@@ -7,11 +7,40 @@ import { MoreHoriz } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import Comments from "../comments/Comments";
 import moment from "moment";
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { makeRequest } from '../../axios';
+import { AuthContext } from "../../context/authContext";
 
 const Post = ({ post }) => {
   const [commentsBox, setCommentsBox] = useState(false);
-  //temp
-  const liked = false;
+  const {currentUser} = useContext(AuthContext);
+  
+  const {isLoading, error, data} = useQuery(['likes', post.id],()=>
+      makeRequest.get('/likes?post_id='+post.id).then((res)=>{
+        return res.data
+      }) 
+    )
+
+    console.log(data);
+
+    const queryClient = useQueryClient();
+
+  const mutation = useMutation((liked) => {
+      if(liked) return makeRequest.delete("/likes?post_id="+ post.id);
+      return makeRequest.post("/likes", {post_id:post.id});
+    },
+    {
+      onSuccess: () => {
+        // Invalidate and refetch
+        queryClient.invalidateQueries(["likes"]);
+      },
+    }
+  );
+
+    const handleLike = () =>{
+      mutation.mutate(data.includes(currentUser.id))
+    }
+
   return (
     <div className="post">
       <div className="container">
@@ -36,13 +65,14 @@ const Post = ({ post }) => {
         </div>
         <div className="info">
           <div className="item">
-            {liked ? <FavoriteOutlined /> : <FavoriteBorderOutlined />} 12 likes
+            {isLoading ? "loading" : data.includes(currentUser.id) ? <FavoriteOutlined style={{color : "red"}} onClick = {handleLike} /> : <FavoriteBorderOutlined onClick={handleLike}/>} 
+             Likes
           </div>
           <div className="item" onClick={() => setCommentsBox(!commentsBox)}>
             <TextsmsOutlined /> 2 comments
           </div>
           <div className="item">
-            <ShareOutlined /> 1 share
+            <ShareOutlined /> Share
           </div>
         </div>
         {commentsBox && <Comments post_id = {post.id} />}
