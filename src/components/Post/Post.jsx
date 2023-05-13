@@ -65,8 +65,8 @@ const Post = ({ post }) => {
         </div>
         <div className="info">
           <div className="item">
-            {isLoading ? "loading" : data.includes(currentUser.id) ? <FavoriteOutlined style={{color : "red"}} onClick = {handleLike} /> : <FavoriteBorderOutlined onClick={handleLike}/>} 
-             Likes
+            {error? " " : isLoading ? "loading" : data.includes(currentUser.id) ? <FavoriteOutlined style={{color : "red"}} onClick = {handleLike} /> : <FavoriteBorderOutlined onClick={handleLike}/>} 
+            {data.length} Likes
           </div>
           <div className="item" onClick={() => setCommentsBox(!commentsBox)}>
             <TextsmsOutlined /> 2 comments
