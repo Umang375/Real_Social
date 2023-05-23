@@ -9,9 +9,6 @@ const getComments = (req,res)=>{
         if(err){
             return res.status(500).json({message: "Error retrieving comments", error: err});
         }
-        // console.log the req.query.post_id
-        // console.log(JSON.stringify(req.query.post_id))
-        console.log(data);
         return res.status(200).json(data);
     })
 }
@@ -26,7 +23,6 @@ const addComment = (req, res) => {
 
         //get all the posts from the users that the user follows
         const q = "INSERT INTO comments (`desc`, `createdAt`, `user_id`, `post_id`) VALUES (?)";
-        // const post_id = parseInt(req.body.post_id.post_id);
         const values = [
             req.body.desc, 
             moment(Date.now()).format('YYYY-MM-DD HH:mm:ss'),

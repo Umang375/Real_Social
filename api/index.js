@@ -1,9 +1,9 @@
-// import userRoute from './routes/users.js';
 const userRoute = require('./routes/users');
 const authRoute = require('./routes/auth');
 const postRoute = require('./routes/posts');
 const commentRoute = require('./routes/comments');
 const likeRoute = require('./routes/likes');
+const relationshipRoute = require('./routes/relationships');
 const cors = require('cors');
 const express = require('express');
 const cookieParser = require('cookie-parser');
@@ -50,6 +50,7 @@ app.use('/api/users', userRoute);
 app.use('/api/posts', postRoute);
 app.use('/api/comments', commentRoute);
 app.use('/api/likes', likeRoute);
+app.use('/api/relationships', relationshipRoute);
 
 app.listen(PORT,()=>{
     console.log("Server Online");

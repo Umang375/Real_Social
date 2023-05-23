@@ -21,8 +21,6 @@ const Post = ({ post }) => {
       }) 
     )
 
-    console.log(data);
-
     const queryClient = useQueryClient();
 
   const mutation = useMutation((liked) => {
@@ -49,7 +47,7 @@ const Post = ({ post }) => {
             <img src={post.ProfilePic} alt="" />
             <div className="details">
               <Link
-                to={`/profile/${post.userId}`}
+                to={`/profile/${post.user_id}`}
                 style={{ textDecoration: "none", color: "inherit" }}
               >
                 <span className="post_name">{post.name}</span>
@@ -66,7 +64,7 @@ const Post = ({ post }) => {
         <div className="info">
           <div className="item">
             {error? " " : isLoading ? "loading" : data.includes(currentUser.id) ? <FavoriteOutlined style={{color : "red"}} onClick = {handleLike} /> : <FavoriteBorderOutlined onClick={handleLike}/>} 
-            {data.length} Likes
+            {data?.length || 0 } Likes
           </div>
           <div className="item" onClick={() => setCommentsBox(!commentsBox)}>
             <TextsmsOutlined /> 2 comments

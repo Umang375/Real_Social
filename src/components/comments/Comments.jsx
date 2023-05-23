@@ -49,7 +49,7 @@ const Comments = ({post_id}) => {
       // Array.isArray(data) && data.length > 0 ? 
       (data.map((comment) => (
         <div className="comment">
-          <img src={comment.ProfilePicture} alt="" />
+          <img src={comment.ProfilePic} alt="" />
           <div className="comment_details">
             <span>{comment.name}</span>
             <p>{comment.desc}</p>
