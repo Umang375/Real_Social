@@ -35,7 +35,7 @@ const Stories = () => {
     <div className='stories'>
       <div className="story">
                 <img src={currentUser.ProfilePic} alt="" />
-                <span>{currentUser.name}</span>
+                <span>{currentUser?.name}</span>
                 <button>+</button>
             </div>
       

@@ -13,10 +13,12 @@ import Posts from "../../components/posts/Posts";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { makeRequest } from "../../axios";
 import { AuthContext } from "../../context/authContext";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useLocation } from "react-router-dom";
+import Update from "../../components/update/Update";
 
 const Profile = () => {
+  const [openUpdate, setOpenUpdate] = useState(false);
   const { currentUser } = useContext(AuthContext);
 
   const userId = parseInt(useLocation().pathname.split("/")[2]);
@@ -51,28 +53,14 @@ const Profile = () => {
     }
 
   return (
-    <div className="profile">
+<div className="profile">
       {isLoading ? (
-        "Loading"
+        "loading"
       ) : (
         <>
           <div className="images">
-            <img
-              src={
-                data?.cover_Pic ||
-                "https://images.pexels.com/photos/14028501/pexels-photo-14028501.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
-              }
-              alt=""
-              className="cover"
-            />
-            <img
-              src={
-                data?.ProfilePic ||
-                "https://images.pexels.com/photos/14028501/pexels-photo-14028501.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
-              }
-              alt=""
-              className="dp"
-            />
+            <img src={"../../../public/uploads/" +data.cover_pic} alt="" className="cover" />
+            <img src={"../../../public/uploads/"+data.ProfilePic} alt="" className="profilePic" />
           </div>
           <div className="profileContainer">
             <div className="uInfo">
@@ -105,11 +93,13 @@ const Profile = () => {
                     <span>{data.website}</span>
                   </div>
                 </div>
-                {isRelLoading ? "Loading" : userId === currentUser.id ? (
-                  <button>Update</button>
+                {isRelLoading ? (
+                  "loading"
+                ) : userId === currentUser.id ? (
+                  <button onClick={() => setOpenUpdate(true)}>update</button>
                 ) : (
                   <button onClick={handleFollow}>
-                    {relationshipData?.includes(currentUser.id)
+                    {relationshipData.includes(currentUser.id)
                       ? "Following"
                       : "Follow"}
                   </button>
@@ -120,10 +110,11 @@ const Profile = () => {
                 <MoreVert />
               </div>
             </div>
-            <Posts userId = {userId} />
+            <Posts userId={userId} />
           </div>
         </>
       )}
+      {openUpdate && <Update setOpenUpdate={setOpenUpdate} user={data} />}
     </div>
   );
 };
