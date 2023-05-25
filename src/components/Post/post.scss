@@ -15,6 +15,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        position: relative;
         .userInfo {
           display: flex;
           gap: 20px;
@@ -36,6 +37,16 @@
               color: #777;
             }
           }
+        }
+        button{
+          position: absolute;
+          right: 0;
+          top: 30px;
+          border: none;
+          background-color: #f0544f;
+          padding: 5px;
+          cursor: pointer;
+          color: white;
         }
       }
       .content{

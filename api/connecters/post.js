@@ -48,7 +48,27 @@ const addPost = (req, res) => {
     })  
 }
 
+const deletePost = (req, res) =>{
+    const token  = req.cookies.access_token;
+    if(!token) return res.status(403).json({error: 'Not Logged in'});
+
+    jwt.verify(token,"keyyyyyyyyyyyyyy",(err, userInfo)=>{
+        if(err) return res.status(401).json({error: 'Unauthorized'});
+
+        //get all the posts from the users that the user follows
+        const q = "DELETE FROM post WHERE id=? AND user_id=?";
+        
+        db.query(q, [req.params.id, userInfo.id], (err, result)=>{
+            if(err) return res.status(500).json({error: err.message, sql: err.sql});
+            if(result.affectedRows>0) return res.status(200).json({message: 'Post deleted successfully'});
+            return res.status(403).json({error: "Unauthorized"});
+        })
+
+    })  
+}
+
 module.exports ={
     getPosts,
-    addPost
+    addPost,
+    deletePost
 }
