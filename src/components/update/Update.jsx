@@ -72,7 +72,7 @@ const Update = ({setOpenUpdate, user}) => {
                   src={
                     cover
                       ? URL.createObjectURL(cover)
-                      : "/upload/" + user.coverPic
+                      : "/upload/" + user.cover_pic
                   }
                   alt=""
                 />
@@ -92,7 +92,7 @@ const Update = ({setOpenUpdate, user}) => {
                   src={
                     profile
                       ? URL.createObjectURL(profile)
-                      : "/upload/" + user.profilePic
+                      : "/upload/" + user.ProfilePic
                   }
                   alt=""
                 />

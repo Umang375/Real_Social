@@ -24,6 +24,7 @@ const Profile = () => {
   const userId = parseInt(useLocation().pathname.split("/")[2]);
   const { isLoading, data } = useQuery(["user"], () =>
     makeRequest.get("/users/find/" + userId).then((res) => {
+      console.log(data)
       return res.data;
     })
   );
@@ -59,8 +60,8 @@ const Profile = () => {
       ) : (
         <>
           <div className="images">
-            <img src={"../../../public/uploads/" +data.cover_pic} alt="" className="cover" />
-            <img src={"../../../public/uploads/"+data.ProfilePic} alt="" className="profilePic" />
+            <img src={"/uploads/"+data.cover_pic} alt="" className="cover" />
+            <img src={"/uploads/"+data.ProfilePic} alt="" className="dp" />
           </div>
           <div className="profileContainer">
             <div className="uInfo">

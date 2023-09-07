@@ -8,7 +8,6 @@ const getUser = (req, res) => {
     db.query(q, [userId],(err, data)=>{
         if(err) return res.status(500).json({error: err.message, sql: err.sql});
         const {password, ...rest} = data[0];
-        console.log(rest);
         return res.status(200).json(rest);
     })
 }
