@@ -41,7 +41,7 @@ const Navbar = () => {
           <EmailOutlinedIcon/>
           <div className='user'>
             
-            <img src={currentUser.ProfilePic} alt="" />
+            <img src={"/uploads/" + currentUser.ProfilePic} alt="" />
             <span>{currentUser.name}</span>
           </div>
         </div>
