@@ -40,7 +40,7 @@ const Rightbar = () => {
           <div className="user">
             <div className="userInfo">
               <img
-                src="https://images.pexels.com/photos/1674666/pexels-photo-1674666.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                src="https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
                 alt=""
               />
               <p>
@@ -57,7 +57,7 @@ const Rightbar = () => {
                 alt=""
               />
               <p>
-                <span>Audera</span> liked a post.
+                <span>Audera Lindson</span> liked your post.
               </p>
             </div>
             <span>1 min ago</span>
