@@ -10,7 +10,6 @@ const getPosts = (req, res) => {
 
     jwt.verify(token,"keyyyyyyyyyyyyyy",(err, userInfo)=>{
         if(err) return res.status(401).json({error: 'Unauthorized'});
-        console.log(userId)
         //get all posts of the user with when veiwing his profile
         const q =( userId !== "undefined") ? 'SELECT p.*, u.id AS user_id, name, ProfilePic FROM post AS p JOIN users AS u ON (p.user_id = u.id) WHERE p.user_id =?  ORDER BY p.dateTime DESC': 'SELECT p.*, u.id AS user_id, name, ProfilePic FROM post AS p JOIN users AS u ON (p.user_id = u.id) LEFT JOIN relationships AS r ON (p.user_id = r.followedUserId) WHERE r.followerUserId=? OR p.user_id=? ORDER BY p.dateTime DESC';
 
