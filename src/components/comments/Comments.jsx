@@ -40,7 +40,7 @@ const Comments = ({post_id}) => {
   return (
     <div className="comments">
       <div className="write">
-        <img src={currentUser.ProfilePic} alt="" />
+        <img src={"/uploads/"+currentUser.ProfilePic} alt="" />
         <input type="text" placeholder='Say Something'
           value={desc} onChange={e => setDesc(e.target.value)} />
         <button onClick={handleClick}>Send</button>
