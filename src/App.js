@@ -1,4 +1,3 @@
-import './App.css';
 import Login from './pages/login/Login';
 import Register from './pages/register/Register';
 import {
@@ -21,8 +20,6 @@ import { QueryClient, QueryClientProvider} from '@tanstack/react-query';
 const queryClient = new QueryClient();
 
 function App() {
-
-  // const currentUser = true;
   const{currentUser}=useContext(AuthContext);
   const{darkMode} = useContext(DarkModeContext);
 
@@ -46,7 +43,7 @@ function App() {
   }
   
   const ProtectedRoute = ({ children }) => {
-    if (!currentUser) {
+    if (currentUser === undefined) {
       return <Navigate to="/login" />;
     }
     return children;
@@ -77,7 +74,7 @@ function App() {
   ]);
 
   return (
-    <div className="App">
+    <div>
       <RouterProvider router={router}/>
    </div>
   );
