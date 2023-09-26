@@ -59,8 +59,8 @@ const Profile = () => {
       ) : (
         <>
           <div className="images">
-            <img src={"/uploads/"+data.cover_pic} alt="" className="cover" />
-            <img src={"/uploads/"+data.ProfilePic} alt="" className="dp" />
+            <img src={data.cover_pic} alt="" className="cover" />
+            <img src={data.ProfilePic} alt="" className="dp" />
           </div>
           <div className="profileContainer">
             <div className="uInfo">

@@ -8,7 +8,7 @@ const getPosts = (req, res) => {
     const token  = req.cookies.access_token;
     if(!token) return res.status(403).json({error: 'Not Logged in'});
 
-    jwt.verify(token,"keyyyyyyyyyyyyyy",(err, userInfo)=>{
+    jwt.verify(token,process.env.SECERT_KEY,(err, userInfo)=>{
         if(err) return res.status(401).json({error: 'Unauthorized'});
         //get all posts of the user with when veiwing his profile
         const q =( userId !== "undefined") ? 'SELECT p.*, u.id AS user_id, name, ProfilePic FROM post AS p JOIN users AS u ON (p.user_id = u.id) WHERE p.user_id =?  ORDER BY p.dateTime DESC': 'SELECT p.*, u.id AS user_id, name, ProfilePic FROM post AS p JOIN users AS u ON (p.user_id = u.id) LEFT JOIN relationships AS r ON (p.user_id = r.followedUserId) WHERE r.followerUserId=? OR p.user_id=? ORDER BY p.dateTime DESC';
@@ -28,7 +28,7 @@ const addPost = (req, res) => {
     const token  = req.cookies.access_token;
     if(!token) return res.status(403).json({error: 'Not Logged in'});
 
-    jwt.verify(token,"keyyyyyyyyyyyyyy",(err, userInfo)=>{
+    jwt.verify(token, process.env.SECERT_KEY,(err, userInfo)=>{
         if(err) return res.status(401).json({error: 'Unauthorized'});
 
         //get all the posts from the users that the user follows
@@ -51,7 +51,7 @@ const deletePost = (req, res) =>{
     const token  = req.cookies.access_token;
     if(!token) return res.status(403).json({error: 'Not Logged in'});
 
-    jwt.verify(token,"keyyyyyyyyyyyyyy",(err, userInfo)=>{
+    jwt.verify(token,process.env.SECERT_KEY,(err, userInfo)=>{
         if(err) return res.status(401).json({error: 'Unauthorized'});
 
         //get all the posts from the users that the user follows

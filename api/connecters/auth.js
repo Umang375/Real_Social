@@ -30,7 +30,7 @@ const login = (req, res) =>{
         const validPass = bcrypt.compareSync(req.body.password, data[0].password);
         if(!validPass) return res.status(401).json({message: "Invalid password"});
 
-        const token = jwt.sign({id:data[0].id}, "keyyyyyyyyyyyyyy", {expiresIn: "1h"});
+        const token = jwt.sign({id:data[0].id}, process.env.SECERT_KEY, {expiresIn: "1h"});
 
         const {password, ...user} = data[0];
         //direct json the user will also send the hashed password so here i will try to sep th password and send the rest of the data

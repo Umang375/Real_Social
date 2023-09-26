@@ -26,7 +26,7 @@ const Leftbar = () => {
         <div className="menu">
           <div className="user">
             <img
-              src= {"/uploads/"+currentUser.ProfilePic}
+              src= {currentUser.ProfilePic}
               alt=""
             />
             <span>{currentUser.name}</span>

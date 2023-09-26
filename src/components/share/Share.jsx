@@ -50,7 +50,7 @@ const Share = () => {
       <div className="container">
         <div className="top">
           <div className="left">
-            <img src={"/uploads/"+currentUser.ProfilePic} alt="" />
+            <img src={currentUser.ProfilePic} alt="" />
             <input
               type="text"
               placeholder={`What's on your mind ${currentUser.name}?`}

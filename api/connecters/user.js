@@ -17,7 +17,7 @@ const updateUser = (req, res) => {
     const token  = req.cookies.access_token;
     if(!token) return res.status(403).json({error: 'Not Logged in'});
 
-    jwt.verify(token,"keyyyyyyyyyyyyyy",(err, userInfo)=>{
+    jwt.verify(token,process.env.SECERT_KEY,(err, userInfo)=>{
         if (err) return res.status(403).json("Token is not valid!");
 
     const q = "UPDATE users SET `name`=?,`city`=?,`website`=?,`cover_pic`=?, `ProfilePic`=? WHERE id=? ";
