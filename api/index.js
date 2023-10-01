@@ -23,7 +23,7 @@ cloudinary.config({
 
 app.use(express.json());
 app.use(cors(
-    {origin : "https://sweet-croissant-e05f26.netlify.app", credentials: true}
+    {origin : "https://sweet-croissant-e05f26.netlify.app/", credentials: true}
 ));
 app.use(cookieParser());
 
