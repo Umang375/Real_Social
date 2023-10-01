@@ -12,6 +12,20 @@ const getUser = (req, res) => {
     })
 }
 
+// const getUser = (req, res) =>{
+//   db.getConnection((err, con) => {
+//   if(err) throw err;
+//       const userId = req.params.userId;
+//     console.log(userId);
+//     const q = `SELECT * FROM users WHERE id = ?`;
+//       con.query(q, [userId],(err, data)=>{
+//         if(err) return res.status(500).json({error: err.message, sql: err.sql});
+//         const {password, ...rest} = data[0];
+//         con.release();
+//         return res.status(200).json(rest);
+//     })
+// })}
+
 const updateUser = (req, res) => {
 
     const token  = req.cookies.access_token;
