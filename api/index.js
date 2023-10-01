@@ -23,7 +23,7 @@ cloudinary.config({
 
 app.use(express.json());
 app.use(cors(
-    {origin : "realsocial.rf.gd", credentials: true}
+    {origin : "https://real-social.onrender.com", credentials: true}
 ));
 app.use(cookieParser());
 
