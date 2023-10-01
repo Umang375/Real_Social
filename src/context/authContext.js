@@ -7,7 +7,7 @@ export const AuthProvider = ({children})=>{
     const [currentUser, setCurrentUser]=useState(JSON.parse(localStorage.getItem("user")) || null);
 
     const login = async (inputs) =>{  
-       const res = await axios.post("http://localhost:5000/api/auth/login", inputs, {
+       const res = await axios.post("https://real-social-back.onrender.com/api/auth/login", inputs, {
               withCredentials: true,
         });
         setCurrentUser(res.data);
