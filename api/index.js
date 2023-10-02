@@ -23,7 +23,7 @@ cloudinary.config({
 
 app.use(express.json());
 app.use(cors(
-    {origin : "https://real-social.onrender.com", credentials: true}
+    {origin : ["https://real-social.onrender.com", "http://localhost:3000"], credentials: true}
 ));
 app.use(cookieParser());
 
