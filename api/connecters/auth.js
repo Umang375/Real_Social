@@ -35,7 +35,7 @@ const login = (req, res) =>{
         const {password, ...user} = data[0];
         //direct json the user will also send the hashed password so here i will try to sep th password and send the rest of the data
 
-        res.cookie("access_token", token, {httpOnly: true, sameSite: true})
+        res.cookie("access_token", token, {httpOnly: true, sameSite: 'none', secure: true})
         .status(200)
         .json(user);
         //might break test necessary
