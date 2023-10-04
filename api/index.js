@@ -23,7 +23,7 @@ cloudinary.config({
 
 app.use(express.json());
 app.use(cors(
-    {origin : ["https://real-social.onrender.com", "http://localhost:3000"], credentials: true}
+    {origin : [`${process.env.FRONTEND_URL}`, `http://localhost:3000`], credentials: true}
 ));
 app.use(cookieParser());
 
@@ -41,7 +41,6 @@ const upload = multer({ storage: storage })
 
 app.post("/api/upload", upload.single('file'),(req,res)=>{
     const file = req.file;
-    console.log(file);
     res.status(200).json(file.path);
 })
 app.use('/api/auth', authRoute);
