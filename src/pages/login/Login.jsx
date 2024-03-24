@@ -46,8 +46,8 @@ const Login = () => {
         <div className="right">
           <h1>Login</h1>
           <form>
-            <input type="text" placeholder="Username" name="username" onChange={handleChange}/>
-            <input type="password" placeholder="Password" name="password" onChange={handleChange} />
+            <input type="text" placeholder="Test Username: Jane Doe" name="username" onChange={handleChange}/>
+            <input type="password" placeholder="Test Password: 12345" name="password" onChange={handleChange} />
             {error && <p>{error.message}</p>}
             <button onClick={handleLogin}>Login</button>
           </form>
